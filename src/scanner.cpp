@@ -39,6 +39,7 @@ std::map<TokenType, std::string> tokenToString = {
     { I64,                  "I64 (i64)"                 },
     { IDENTIFIER,           "IDENTIFIER ()"             },
     { IF,                   "IF (if)"                   },
+    { IMPORT,               "IMPORT (import)"           },
     { INTERROBANG,          "INTERROBANG (?!)"          },
     { LEFT_ANGLE,           "LEFT_ANGLE (<)"            },
     { LEFT_CURLY,           "LEFT_CURLY ({)"            },
@@ -49,6 +50,7 @@ std::map<TokenType, std::string> tokenToString = {
     { MINUS,                "MINUS (-)"                 },
     { MINUS_EQUALS,         "MINUS_EQUALS (-=)"         },
     { MINUS_MINUS,          "MINUS_MINUS (--)"          },
+    { MODULE,               "MODULE (module)"           },
     { NUMBER,               "NUMBER ()"                 },
     { PERCENT,              "PERCENT (%)"               },
     { PERCENT_EQUALS,       "PERCENT_EQUALS (%=)"       },
@@ -81,7 +83,9 @@ std::map<std::string, SimpleTokenConfig> keywordTokens = {
     { "function", { TokenType::FUNCTION } },
     { "i64",      { TokenType::I64 } },
     { "if",       { TokenType::IF } },
+    { "import",   { TokenType::IMPORT } },
     { "let",      { TokenType::LET } },
+    { "module",   { TokenType::MODULE } },
     { "return",   { TokenType::RETURN } },
     { "struct",   { TokenType::STRUCT } },
     { "true",     { TokenType::TRUE } },
@@ -322,7 +326,7 @@ namespace piper {
                 Token *t = new Token();
                 t->start = start_location;
                 t->end = end_location;
-                t->type = TokenType::STRING;
+                t->type = TokenType::FORMAT_STRING;
                 t->str = buffer;
                 tokens->push_back(t);
                 continue;
@@ -338,6 +342,50 @@ namespace piper {
                 c = file.peek();
 
                 while (c != '"') {
+                    if (c == EOF) {
+                        // This should never happen with good code.
+                        break;
+                    }
+
+                    if (c == '\\') {
+                        file.get(); column++;
+                        c = file.peek();
+                        buffer += c;
+                        file.get(); column++;
+                        c = file.peek();
+                        continue;
+                    } else {
+                        buffer += c;
+                        file.get(); column++;
+                        c = file.peek();
+                    }
+                }
+
+                end_location.line = line;
+                end_location.column = column;
+
+                file.get(); column++;
+                c = file.peek();
+
+                Token *t = new Token();
+                t->start = start_location;
+                t->end = end_location;
+                t->type = TokenType::STRING;
+                t->str = buffer;
+                tokens->push_back(t);
+                continue;
+            }
+
+            if (c == '\'') {
+                std::string buffer;
+
+                start_location.line = line;
+                start_location.column = column;
+
+                file.get(); column++;
+                c = file.peek();
+
+                while (c != '\'') {
                     if (c == EOF) {
                         // This should never happen with good code.
                         break;

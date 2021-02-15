@@ -39,6 +39,7 @@ namespace piper {
         I64,                            // i64
         IDENTIFIER,                     // something
         IF,                             // if
+        IMPORT,                         // import
         INTERROBANG,                    // ?!
         LEFT_ANGLE,                     // <
         LEFT_CURLY,                     // {
@@ -49,6 +50,7 @@ namespace piper {
         MINUS,                          // -
         MINUS_EQUALS,                   // -=
         MINUS_MINUS,                    // --
+        MODULE,                         // module
         NUMBER,                         // 6
         PERCENT,                        // %
         PERCENT_EQUALS,                 // %=

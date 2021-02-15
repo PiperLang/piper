@@ -94,6 +94,8 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
+    std::cout << "Max Tokens: " << piper::TokenType::TOKEN_MAX << std::endl;
+
     bool dump_tokens = false;
     std::string output_file = "-";
 

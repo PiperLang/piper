@@ -10,6 +10,9 @@ namespace piper {
      * some tokens are use-named and some are appearance-named, I am choosing
      * to have everything appearance-named at this stage. Later stages, where
      * symbols have been disambiguated can be more specific.
+     *
+     * Many things were stolen from https://llvm.org/docs/LangRef.html#module-structure
+     * Not all of these things will be used, probably, this list stands as a note to myself to some degree.
      */
     enum TokenType {
         ASTERISK,                       // *
@@ -17,6 +20,8 @@ namespace piper {
         ASTERISK_EQUALS,                // *=
         BANG,                           // !
         BANG_EQUALS,                    // !=
+        BYREF,                          // byref
+        BYVAL,                          // byval
         BREAK,                          // break
         CLASS,                          // class
         COLON,                          // :
@@ -27,6 +32,7 @@ namespace piper {
         DOT,                            // .
         EQUALS,                         // =
         EQUALS_EQUALS,                  // ==
+        EXTERNAL,                       // external
         FALSE,                          // false
         FAT_ARROW,                      // =>
         FOR,                            // for
@@ -34,12 +40,15 @@ namespace piper {
         FORWARD_SLASH,                  // /
         FORWARD_SLASH_EQUALS,           // /=
         FUNCTION,                       // function
+        GLOBAL,                         // global
         GREATER_EQUALS,                 // >=
         HASH,                           // #
+        HIDDEN,                         // hidden
         I64,                            // i64
         IDENTIFIER,                     // something
         IF,                             // if
         IMPORT,                         // import
+        INTERNAL,                       // internal
         INTERROBANG,                    // ?!
         LEFT_ANGLE,                     // <
         LEFT_CURLY,                     // {
@@ -51,6 +60,8 @@ namespace piper {
         MINUS_EQUALS,                   // -=
         MINUS_MINUS,                    // --
         MODULE,                         // module
+        NOCAPTURE,                      // nocapture
+        NOFREE,                         // nofree
         NUMBER,                         // 6
         PERCENT,                        // %
         PERCENT_EQUALS,                 // %=
@@ -58,6 +69,9 @@ namespace piper {
         PLUS,                           // +
         PLUS_PLUS,                      // ++
         PLUS_EQUALS,                    // +=
+        PRIVATE,                        // private
+        PROTECTED,                      // protected
+        PUBLIC,                         // public
         QUESTION,                       // ?
         QUESTION_COLON,                 // ?:
         RETURN,                         // return
@@ -75,6 +89,8 @@ namespace piper {
         U64,                            // u64
         VAR,                            // var
         VOID,                           // void
+        WEAK,                           // weak
         WHILE,                          // while
+        TOKEN_MAX
     };
 }

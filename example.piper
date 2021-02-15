@@ -1,13 +1,14 @@
 import module 'byte_types';
 
-function fib(u64 in): u64 {
+function fib(u64: in): u64 {
     if (in < 2) return in;
     return fib(in - 1) + fib(in - 2);
 }
 
-i64 main() {
+function main(): i64 {
     print(
         `Fib 54: {u64:fib}`,
         fib: fib(45)
     );
+    return 0;
 }

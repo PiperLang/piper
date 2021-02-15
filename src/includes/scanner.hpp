@@ -24,7 +24,7 @@ namespace piper {
             Scanner(std::string filename);
 
             std::vector<Token *> *getTokens();
-            std::string getTokenName(TokenType tokenType);
+            static std::string getTokenName(TokenType tokenType);
         protected:
         private:
             std::string filename;

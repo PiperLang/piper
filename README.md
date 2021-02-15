@@ -49,7 +49,7 @@ For now this is only guaranteed to work with ASCII. UTF-8 encoding is on the hor
 
 ##### LIST OF TOKENS
 
-Each token is its own byte. There are (currently) four tokens that are followed by a string id to represent the additional info: FORMAT_STRING, STRING, IDENTIFIER, NUMBER.
+Each token is its own byte. Then there's a byte for line and a byte for column. There are (currently) four tokens that are followed by a string id to represent the additional info: FORMAT_STRING, STRING, IDENTIFIER, NUMBER.
 
 Note that format strings at this point are not internally parsed and are just strings. Also note that numbers themselves are not parsed and are just the string version of themselves.
 

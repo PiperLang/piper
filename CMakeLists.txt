@@ -43,3 +43,6 @@ add_executable(piper
     src/expressions/sub_expression.cpp
 )
 target_include_directories(piper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/includes)
+
+add_executable(jitter src/jitter.cpp)
+target_link_libraries(jitter PUBLIC gccjit)

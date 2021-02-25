@@ -6,26 +6,16 @@
 
 #include <scanner.hpp>
 #include <stage_filetotokens.hpp>
-#include <stage_tokenstotree.hpp>
-
-// For each stage:
-//     a) Do we run this stage?
-//     b) Do we write this out to a file at all?
-//     c) What stages are we passing this info on to?
-//         *) We could just store the output and let the future stages grab.
 
 void parse_file(std::string filename) {
     std::map<std::string /* pass_name */, piper::parse_result> results;
 
-    std::vector<piper::Stage *> stages = {
-        new piper::FileToTokens(filename),
-        new piper::TokensToTree(filename)
-    };
+    auto stage = new piper::FileToTokens(filename);
+    stage->run(&results);
 
-    for (auto stage: stages) {
-        if (stage->shouldRun()) {
-            stage->run(&results);
-        }
+    auto r = results["tokens"];
+    for (int i = 0; i < r.output_size; i++) {
+        std::cout << r.bytes[i];
     }
 }
 

@@ -23,7 +23,8 @@ namespace piper {
         parse_result pr;
         // 9 -- magic number
         // 1 -- file version
-        pr.output_size = 9 + 1;
+        // 1 -- # of strings
+        pr.output_size = 9 + 1 + 1;
 
         auto tokens = scanner->getTokens();
         
@@ -33,10 +34,6 @@ namespace piper {
             // one for the line number
             // one for the column number
             pr.output_size += 3;
-
-            if (this->debug) {
-                std::cout << "Token: " << Scanner::getTokenName(token->type) << std::endl;
-            }
 
             switch (token->type) {
                 case piper::TokenType::FORMAT_STRING:
@@ -56,6 +53,9 @@ namespace piper {
                             pr.output_size += 1 + token->str.size();
                             static_strings.push_back(token->str);
                         }
+
+                        // Storing the str_id regardless of if this string is "new"
+                        pr.output_size += 1;
                     }
                     break;
             }
@@ -72,15 +72,10 @@ namespace piper {
             pr.bytes[pr_idx++] = magic[i];
         }
         pr.bytes[pr_idx++] = file_version;
+
         pr.bytes[pr_idx++] = static_strings.size();
-        if (this->debug) {
-            std::cout << "Embedded Strings: " << std::endl;
-        }
         for (int i = 0; i < static_strings.size(); i++) {
             auto s = static_strings.at(i);
-            if (this->debug) {
-                std::cout << "    " << i << ": " << s << std::endl;
-            }
             char len = s.length();
             pr.bytes[pr_idx++] = len;
             for (int i = 0; i < len; i++) {
@@ -90,6 +85,7 @@ namespace piper {
 
         for (auto token : *tokens) {
             char c = static_cast<char>(token->type);
+
             pr.bytes[pr_idx++] = c;
             pr.bytes[pr_idx++] = token->start.line;
             pr.bytes[pr_idx++] = token->start.column;

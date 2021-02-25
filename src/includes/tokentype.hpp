@@ -15,15 +15,17 @@ namespace piper {
      * Not all of these things will be used, probably, this list stands as a note to myself to some degree.
      */
     enum TokenType {
+        ALIGN,                          // align
         ASTERISK,                       // *
         ASTERISK_ASTERISK,              // **
         ASTERISK_EQUALS,                // *=
         BANG,                           // !
         BANG_EQUALS,                    // !=
+        BREAK,                          // break
         BYREF,                          // byref
         BYVAL,                          // byval
-        BREAK,                          // break
         CLASS,                          // class
+        COLD,                           // cold
         COLON,                          // :
         COLON_COLON,                    // ::
         COMMA,                          // ,
@@ -44,6 +46,7 @@ namespace piper {
         GREATER_EQUALS,                 // >=
         HASH,                           // #
         HIDDEN,                         // hidden
+        HOT,                            // hot
         I64,                            // i64
         IDENTIFIER,                     // something
         IF,                             // if
@@ -60,8 +63,11 @@ namespace piper {
         MINUS_EQUALS,                   // -=
         MINUS_MINUS,                    // --
         MODULE,                         // module
+        MONOTONIC,                      // monotonic
         NOCAPTURE,                      // nocapture
         NOFREE,                         // nofree
+        NONNULL,                        // nonnull
+        NORECURSE,                      // norecurse
         NUMBER,                         // 6
         PERCENT,                        // %
         PERCENT_EQUALS,                 // %=
@@ -69,11 +75,13 @@ namespace piper {
         PLUS,                           // +
         PLUS_PLUS,                      // ++
         PLUS_EQUALS,                    // +=
+        PREALLOCATED,                   // preallocated
         PRIVATE,                        // private
         PROTECTED,                      // protected
         PUBLIC,                         // public
         QUESTION,                       // ?
         QUESTION_COLON,                 // ?:
+        READONLY,                       // readonly
         RETURN,                         // return
         RIGHT_ANGLE,                    // >
         RIGHT_CURLY,                    // }
@@ -87,10 +95,12 @@ namespace piper {
         TOKEN_EOF,                      // <No Visual Representation>
         TRUE,                           // true
         U64,                            // u64
+        UNORDERED,                      // unordered
         VAR,                            // var
         VOID,                           // void
         WEAK,                           // weak
         WHILE,                          // while
+        WRITEONLY,                      // writeonly
         TOKEN_MAX
     };
 }

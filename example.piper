@@ -1,14 +1,17 @@
 import module 'byte_types';
+import module 'io';
 
 function fib(u64: in): u64 {
-    if (in < 2) return in;
+    if (in < 2) {
+        return in;
+    }
+    
     return fib(in - 1) + fib(in - 2);
 }
 
 function main(): i64 {
-    print(
+    io::print(
         `Fib 54: {u64:fib}`,
         fib: fib(45)
     );
-    return 0;
 }

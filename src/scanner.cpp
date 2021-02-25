@@ -18,8 +18,6 @@ std::map<TokenType, std::string> tokenToString = {
     { BANG,                 "BANG"                      },
     { BANG_EQUALS,          "BANG_EQUALS"               },
     { BREAK,                "BREAK"                     },
-    { BYREF,                "BYREF"                     },
-    { BYVAL,                "BYVAL"                     },
     { CLASS,                "CLASS"                     },
     { COLON,                "COLON (:)"                 },
     { COLON_COLON,          "COLON_COLON (::)"          },
@@ -29,7 +27,6 @@ std::map<TokenType, std::string> tokenToString = {
     { DOT,                  "DOT (.)"                   },
     { EQUALS,               "EQUALS (=)"                },
     { EQUALS_EQUALS,        "EQUALS_EQUALS (==)"        },
-    { EXTERNAL,             "EXTERNAL"                  },
     { FALSE,                "FALSE (false)"             },
     { FAT_ARROW,            "FAT_ARROW (=>)"            },
     { FOR,                  "FOR (for)"                 },
@@ -45,7 +42,6 @@ std::map<TokenType, std::string> tokenToString = {
     { IDENTIFIER,           "IDENTIFIER ()"             },
     { IF,                   "IF (if)"                   },
     { IMPORT,               "IMPORT (import)"           },
-    { INTERNAL,             "INTERNAL (internal)"       },
     { INTERROBANG,          "INTERROBANG (?!)"          },
     { LEFT_ANGLE,           "LEFT_ANGLE (<)"            },
     { LEFT_CURLY,           "LEFT_CURLY ({)"            },
@@ -57,8 +53,6 @@ std::map<TokenType, std::string> tokenToString = {
     { MINUS_EQUALS,         "MINUS_EQUALS (-=)"         },
     { MINUS_MINUS,          "MINUS_MINUS (--)"          },
     { MODULE,               "MODULE (module)"           },
-    { NOCAPTURE,            "NOCAPTURE (nocapture)"     },
-    { NOFREE,               "NOFREE (nofree)"           },
     { NUMBER,               "NUMBER ()"                 },
     { PERCENT,              "PERCENT (%)"               },
     { PERCENT_EQUALS,       "PERCENT_EQUALS (%=)"       },
@@ -86,14 +80,10 @@ std::map<TokenType, std::string> tokenToString = {
     { U64,                  "U64 (u64)"                 },
     { VAR,                  "VAR (var)"                 },
     { VOID,                 "VOID (void)"               },
-    { WEAK,                 "WEAK (weak)"               },
     { WHILE,                "WHILE (while)"             },
 };
 
 std::map<std::string, SimpleTokenConfig> keywordTokens = {
-    { "byref",     { TokenType::BYREF } },
-    { "byval",     { TokenType::BYVAL } },
-    { "external",  { TokenType::EXTERNAL } },
     { "false",     { TokenType::FALSE } },
     { "function",  { TokenType::FUNCTION } },
     { "global",    { TokenType::GLOBAL } },
@@ -101,11 +91,8 @@ std::map<std::string, SimpleTokenConfig> keywordTokens = {
     { "i64",       { TokenType::I64 } },
     { "if",        { TokenType::IF } },
     { "import",    { TokenType::IMPORT } },
-    { "internal",  { TokenType::INTERNAL} },
     { "let",       { TokenType::LET } },
     { "module",    { TokenType::MODULE } },
-    { "nocapture", { TokenType::NOCAPTURE } },
-    { "nofree",    { TokenType::NOFREE } },
     { "private",   { TokenType::PRIVATE } },
     { "protected", { TokenType::PROTECTED } },
     { "public",    { TokenType::PUBLIC} },
@@ -115,7 +102,6 @@ std::map<std::string, SimpleTokenConfig> keywordTokens = {
     { "u64",       { TokenType::U64 } },
     { "var",       { TokenType::VAR } },
     { "void",      { TokenType::VOID } },
-    { "weak",      { TokenType::WEAK } },
 };
 
 std::map<char, SimpleTokenConfig> simpleTokens = {
